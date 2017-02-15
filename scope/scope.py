@@ -9,8 +9,8 @@ class Scope(object):
     def put(self, name: str, value) -> None:
         self.env[name] = value
 
-    def put_all(self, other) -> None:
-        self.env = copy.deepcopy(other.env)
+    def put_all(self, other: 'Scope') -> None:
+        self.env = deepcopy(other.env)
 
     def look_up_local(self, name: str):
         return self.env.get(name)
@@ -24,7 +24,7 @@ class Scope(object):
         else:
             return None
 
-    def find_scope(self, name: str) -> typing.Optional['Scope']:
+    def find_scope(self, name: str) -> Optional['Scope']:
         if self.look_up_local(name) is not None:
             return self
         elif self.parent is not None:
