@@ -12,7 +12,7 @@ NULL_PAIR_VALUE = EmptyPair()
 
 class Pair(Value):
 
-    def __init__(self, first: Optional[Value], second: Optional[Value]):
+    def __init__(self, first: Optional[Value], second: Optional[Value]) -> None:
         self.first: Optional[Value]
         self.second: Optional[Value]
         self.first, self.second = first, second

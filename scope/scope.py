@@ -1,7 +1,11 @@
 from copy import deepcopy
 from typing import Optional
 
+from value import primitives, Bool
+
+
 class Scope(object):
+
     def __init__(self, parent: Optional['Scope']) -> None:
         self.parent: Scope = parent
         self.env: dict = {}
@@ -34,5 +38,27 @@ class Scope(object):
 
 def root_scope() -> Scope:
     root = Scope(None)
-    # TODO(Cholerae): Put primitives and bool values in root scope
+    root.put('+', primitives.Add())
+    root.put('-', primitives.Sub())
+    root.put('*', primitives.Mult())
+    root.put('/', primitives.Div())
+    root.put('=', primitives.Add())
+    root.put('>', primitives.Gt())
+    root.put('<', primitives.Lt())
+    root.put('>=', primitives.GtE())
+    root.put('<=', primitives.LtE())
+    root.put('%', primitives.Mod())
+    root.put('and', primitives.And())
+    root.put('or', primitives.Or())
+    root.put('eqv?', primitives.IsEqv())
+    root.put('type-of', primitives.TypeOf())
+    root.put('display', primitives.Display())
+    root.put('newline', primitives.Newline())
+    root.put('car', primitives.Car())
+    root.put('cdr', primitives.Cdr())
+    root.put('cons', primitives.Cons())
+    root.put('sleep', primitives.Sleep())
+    root.put('random', primitives.Random())
+    root.put('#t', Bool(True))
+    root.put('#f', Bool(False))
     return root
