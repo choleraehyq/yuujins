@@ -1,3 +1,5 @@
+from typing import Optional
+
 from ast import Node, Name, UnquoteSplicing
 from scope import Scope
 from value import Value, NULL_PAIR_VALUE, Symbol, Pair as PairValue
@@ -11,7 +13,7 @@ NULL_PAIR = EmptyPair()
 
 class Pair(Node):
 
-    def __init__(self, first: Node, second: Node) -> None:
+    def __init__(self, first: Optional[Node], second: Optional[Node]) -> None:
         self.first: Node = first
         self.second: Node = second
         if self.second is None:
